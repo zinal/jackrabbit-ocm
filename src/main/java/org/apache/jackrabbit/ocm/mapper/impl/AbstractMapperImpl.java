@@ -98,12 +98,12 @@ public abstract class AbstractMapperImpl implements Mapper {
                 if (null == superClassDescriptor)
                 {
                 	// Just a debug info because we can have a non persisted ancestor class
-                    if (log.isDebugEnabled()) {
-                        log.debug("Cannot find mapping for class "
-                                + cd.getExtend()
-                                + " referenced as extends from "
-                                + cd.getClassName());
-                    }
+                	if (log.isDebugEnabled()) {
+                            log.debug("Cannot find mapping for class "
+                                      + cd.getExtend()
+                                      + " referenced as extends from "
+                                      + cd.getClassName());
+                        }
                 	
                 	// This is not necessary to keep a non persisted ancestor class
                 	cd.setExtend(null);
@@ -136,13 +136,12 @@ public abstract class AbstractMapperImpl implements Mapper {
                           if (null == interfaceClassDescriptor)
                           {
                         	  // Just a debug info because we can have a non persisted interface reference 
-                              if (log.isDebugEnabled()) {
-                                  log.debug("Cannot find mapping for interface "
-                                          + interfaceName
-                                          + " referenced as implements from "
-                                          + cd.getClassName());
-                              }
-                        	  
+                        	  if (log.isDebugEnabled()) {
+                                      log.debug("Cannot find mapping for interface "
+                                                + interfaceName
+                                                + " referenced as implements from "
+                                                + cd.getClassName());
+                                  }
                           }
                           else
                           {

@@ -186,14 +186,11 @@ public class ObjectContentManagerImpl implements ObjectContentManager {
      * @param converter
      *            the <code>ObjectConverter</code> to be used internally
      * @param queryManager
-     *            the query manager to be used
-     * @param requestObjectCache
-     *            the request object cache to be used
+     *            the query manager to used
      * @param session
      *            The JCR session
      */
-    public ObjectContentManagerImpl(Mapper mapper, ObjectConverter converter, QueryManager queryManager, 
-            ObjectCache requestObjectCache, Session session) {
+    public ObjectContentManagerImpl(Mapper mapper, ObjectConverter converter, QueryManager queryManager, ObjectCache requestObjectCache, Session session) {
         this.mapper = mapper;
         this.session = session;
         this.objectConverter = converter;
@@ -614,7 +611,9 @@ public class ObjectContentManagerImpl implements ObjectContentManager {
     }
 
     private NodeIterator getNodeIterator(String query, String language) {
-        log.debug("Get Node Iterator with expression [{}] and language {}", query, language);
+        if (log.isDebugEnabled()) {
+            log.debug("Get Node Iterator with expression " + query + " and language " + language);
+        }
         javax.jcr.query.Query jcrQuery;
         try {
             jcrQuery = session.getWorkspace().getQueryManager().createQuery(query, language);

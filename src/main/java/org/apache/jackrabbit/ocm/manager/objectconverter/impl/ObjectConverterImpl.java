@@ -351,17 +351,15 @@ public class ObjectConverterImpl implements ObjectConverter {
 
 			Object object = ReflectionUtils.newInstance(classDescriptor.getClassName());
 
-            if (! requestObjectCache.isCached(path))
-            {
-			  requestObjectCache.cache(path, object);
-            }
+                        if (! requestObjectCache.isCached(path)) {
+                            requestObjectCache.cache(path, object);
+                        }
 
 			simpleFieldsHelp.retrieveSimpleFields(session, classDescriptor, node, object);
 			retrieveBeanFields(session, classDescriptor, node, object, false);
 			retrieveCollectionFields(session, classDescriptor, node, object, false);
 
-            requestObjectCache.ready(path, object);
-
+                        requestObjectCache.ready(path, object);
 			return object;
 
 		} catch (PathNotFoundException pnfe) {
@@ -435,19 +433,17 @@ public class ObjectConverterImpl implements ObjectConverter {
                         + " for node " + path + " of type " + node.getPrimaryNodeType().getName());
 			}
 
-            Object object = ReflectionUtils.newInstance(classDescriptor.getClassName());
+                        Object object = ReflectionUtils.newInstance(classDescriptor.getClassName());
 
-            if (! requestObjectCache.isCached(path))
-            {
-			  requestObjectCache.cache(path, object);
-            }
+                        if (! requestObjectCache.isCached(path)) {
+                            requestObjectCache.cache(path, object);
+                        }
 
-            simpleFieldsHelp.retrieveSimpleFields(session, classDescriptor, node, object);
+                        simpleFieldsHelp.retrieveSimpleFields(session, classDescriptor, node, object);
 			retrieveBeanFields(session, classDescriptor, node, object, false);
 			retrieveCollectionFields(session, classDescriptor, node, object, false);
 
-            requestObjectCache.ready(path, object);
-
+                        requestObjectCache.ready(path, object);
 			return object;
 		} catch (PathNotFoundException pnfe) {
 			// HINT should never get here
@@ -499,7 +495,7 @@ public class ObjectConverterImpl implements ObjectConverter {
 				else
 				{
 					throw new ObjectContentManagerException("Impossible to retrieve the mapped attribute. The attribute '" +
-							                                                         attributeName + "'  is not a bean or a collection for the class : " + classDescriptor.getClassName());
+                                                                                attributeName + "'  is not a bean or a collection for the class : " + classDescriptor.getClassName());
 				}
 			}
 
@@ -713,8 +709,8 @@ public class ObjectConverterImpl implements ObjectConverter {
 			requestObjectCache.cache(beanPath, bean);
 			ReflectionUtils.setNestedProperty(object, beanName, bean);
 		}
-
-        requestObjectCache.ready(beanPath, bean);
+                
+                requestObjectCache.ready(beanPath, bean);
 	}
 
 	private void retrieveCollectionFields(Session session, ClassDescriptor classDescriptor, Node parentNode, Object object,
@@ -741,7 +737,7 @@ public class ObjectConverterImpl implements ObjectConverter {
 		}
 		else
 		{
-            ManageableObjects objects = collectionConverter.getCollection(session, parentNode, collectionDescriptor, collectionFieldClass);
+                        ManageableObjects objects = collectionConverter.getCollection(session, parentNode, collectionDescriptor, collectionFieldClass);
 			if (objects==null)
 			{
 			  ReflectionUtils.setNestedProperty(object, collectionDescriptor.getFieldName(), null);

@@ -181,20 +181,19 @@ public class SimpleFieldsHelper
 		
 		    if (propDef != null && propDef.getDefaultValues() != null && propDef.getDefaultValues().length == 1)
 		    {
-                if (log.isDebugEnabled()) {
-                    log.debug("retrieveSimpleField: Use default value from property definition for missing mapped property " + propertyName + " of class '" + classDescriptor.getClassName() + "'");
-                }
+                        if (log.isDebugEnabled()) {
+                            log.debug("retrieveSimpleField: Use default value from property definition for missing mapped property " + propertyName + " of class '" + classDescriptor.getClassName() + "'");
+                        }
 		        propValue = propDef.getDefaultValues()[0];
-		    } else
-		    {
-                if (log.isDebugEnabled()) {
-                    log.debug("retrieveSimpleField: No default value available for missing mapped property " + propertyName + " of class '" + classDescriptor.getClassName() + "'");
-                }
+		    } else {
+                        if (log.isDebugEnabled()) {
+                            log.debug("retrieveSimpleField: No default value available for missing mapped property " + propertyName + " of class '" + classDescriptor.getClassName() + "'");
+                        }
 		        propValue = null;
 		    }
 		}
 		
-        // HINT: lazy initialize target bean - The bean can be null when it is inline
+                // HINT: lazy initialize target bean - The bean can be null when it is inline
 		if (initializedBean == null)
 		{
 		
@@ -208,11 +207,11 @@ public class SimpleFieldsHelper
 		    initializedBean = ReflectionUtils.newInstance(classDescriptor.getClassName());
 		}
 
-        AtomicTypeConverter converter = getAtomicTypeConverter(fieldDescriptor, initializedBean, fieldName);
-        Object fieldValue = (propValue != null) ? converter.getObject(propValue) : null;
-        ReflectionUtils.setNestedProperty(initializedBean, fieldName, fieldValue);
-
-        return initializedBean;
+                AtomicTypeConverter converter = getAtomicTypeConverter(fieldDescriptor, initializedBean, fieldName);
+                Object fieldValue = (propValue != null) ? converter.getObject(propValue) : null;
+                ReflectionUtils.setNestedProperty(initializedBean, fieldName, fieldValue);
+                
+                return initializedBean;
 	}
 	
 	public void storeSimpleFields(Session session, Object object, ClassDescriptor classDescriptor, Node objectNode) {
